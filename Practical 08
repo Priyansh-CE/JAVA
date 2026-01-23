@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class CommandLineCalc {
+class CommandLineCalc {
     public static void main(String[] args) {
 
         double num1, num2;
