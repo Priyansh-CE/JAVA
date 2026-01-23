@@ -1,3 +1,10 @@
+/*
+Define a Java class named Rectangle. It should have two double data fields: width and height,
+both with a default value of 1. Implement a no-argument constructor and a constructor that
+takes width and height as parameters. Include methods getArea() and getPerimeter() that
+return the calculated area and perimeter respectively.
+*/
+
 import java.util.Scanner;
 
 class Rectangle {
