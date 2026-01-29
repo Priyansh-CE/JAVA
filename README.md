@@ -17,11 +17,11 @@ This project is created for learning, academic, and practical implementation pur
 
 ## 🛠️ Tech Stack
 
-- Language: Java / Python / C / C++ (update accordingly)
-- Tools: Git, GitHub
-- IDE: VS Code / IntelliJ / Eclipse (optional)
+- Language: Java
+- Tools:GitHub
+- IDE: VS Code
 
 ---
 
-## 📂 Project Structure
+
 
