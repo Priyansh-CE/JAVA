@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+class LoanCalculator {
+    
+    void calculateEMI(int principal, int time, float rate) {
+        float monthlyRate = rate / (12 * 100);
+        int months = time * 12;
+
+        double emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, months))
+                   / (Math.pow(1 + monthlyRate, months) - 1);
+
+        System.out.println("Home Loan EMI: ₹" + emi);
+    }
+
+    void calculateEMI(double principal, int time, double rate) {
+        double monthlyRate = rate / (12 * 100);
+        int months = time * 12;
+
+        double emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, months))
+                   / (Math.pow(1 + monthlyRate, months) - 1);
+
+        System.out.println("Vehicle Loan EMI: ₹" + emi);
+    }
+
+    void calculateEMI(int principal, int time) {
+        double rate = 10.0;
+        double monthlyRate = rate / (12 * 100);
+        int months = time * 12;
+
+        double emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, months))
+                   / (Math.pow(1 + monthlyRate, months) - 1);
+
+        System.out.println("Personal Loan EMI (10% fixed): ₹" + emi);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        LoanCalculator loan = new LoanCalculator();
+
+        System.out.println("Enter Home Loan Details:");
+        System.out.print("Principal: ");
+        int hPrincipal = sc.nextInt();
+        System.out.print("Time (years): ");
+        int hTime = sc.nextInt();
+        System.out.print("Rate of Interest: ");
+        float hRate = sc.nextFloat();
+        loan.calculateEMI(hPrincipal, hTime, hRate);
+
+        System.out.println("\nEnter Vehicle Loan Details:");
+        System.out.print("Principal: ");
+        double vPrincipal = sc.nextDouble();
+        System.out.print("Time (years): ");
+        int vTime = sc.nextInt();
+        System.out.print("Rate of Interest: ");
+        double vRate = sc.nextDouble();
+        loan.calculateEMI(vPrincipal, vTime, vRate);
+
+        System.out.println("\nEnter Personal Loan Details:");
+        System.out.print("Principal: ");
+        int pPrincipal = sc.nextInt();
+        System.out.print("Time (years): ");
+        int pTime = sc.nextInt();
+        loan.calculateEMI(pPrincipal, pTime);
+
+        sc.close();
+    }
+}
