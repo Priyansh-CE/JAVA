@@ -1,3 +1,11 @@
+/* 
+Define a Java class named Rectangle. It should have two double data fields: width and height.
+In your main method, create two Rectangle objects: one with width 4 and height 40, and
+another with width 3.5 and height 35.9. For each rectangle, display its width, height,
+calculated area, and perimeter. Then, compare the two rectangles based on their areas and
+print which one has a larger area.
+*/
+
 import java.util.Scanner;
 
 class Rectangle {
