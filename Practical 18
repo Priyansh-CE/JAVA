@@ -1,0 +1,73 @@
+/*
+Design a class BankAccount with account_holder_name and balance. Use a static variable
+interest_rate (same for all accounts). Include methods to calculate and display the interest
+Earned. Update interest rate using a static method.
+*/
+import java.util.Scanner;
+
+class BankAccount {
+
+    String accountHolderName;
+    double balance;
+
+    static double interestRate = 5.0;
+
+    BankAccount(String name, double bal) {
+        accountHolderName = name;
+        balance = bal;
+    }
+
+    double calculateInterest() {
+        return (balance * interestRate) / 100;
+    }
+
+    void displayDetails() {
+        System.out.println("\nAccount Holder: " + accountHolderName);
+        System.out.println("Balance: " + balance);
+        System.out.println("Interest Rate: " + interestRate + "%");
+        System.out.println("Interest Earned: " + calculateInterest());
+    }
+
+    static void updateInterestRate(double newRate) {
+        interestRate = newRate;
+        System.out.println("\nInterest Rate Updated to: " + interestRate + "%");
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of accounts: ");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        BankAccount[] accounts = new BankAccount[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nEnter details for Account " + (i + 1));
+
+            System.out.print("Account Holder Name: ");
+            String name = sc.nextLine();
+
+            System.out.print("Balance: ");
+            double bal = sc.nextDouble();
+            sc.nextLine();
+
+            accounts[i] = new BankAccount(name, bal);
+        }
+
+        System.out.println("\n--- Account Details with Default Interest Rate ---");
+        for (int i = 0; i < n; i++) {
+            accounts[i].displayDetails();
+        }
+
+        System.out.print("\nEnter new interest rate: ");
+        double newRate = sc.nextDouble();
+        BankAccount.updateInterestRate(newRate);
+
+        System.out.println("\n--- Account Details After Interest Rate Update ---");
+        for (int i = 0; i < n; i++) {
+            accounts[i].displayDetails();
+        }
+    }
+}
