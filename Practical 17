@@ -1,0 +1,56 @@
+/*
+Create a Java class named University with a static data member totalStudents to keep track of
+the number of student objects created. Implement a static method getTotalStudents (). Also,
+include a static block to initialize a static variable (e.g., universityName) and an instance
+block to print a message when an object is created. Demonstrate their execution order.
+*/
+
+import java.util.Scanner;
+
+class University {
+
+    static int totalStudents;
+
+    static String universityName;
+
+    String studentName;
+
+    static {
+        universityName = "GTU University";
+        totalStudents = 0;
+        System.out.println("Static Block Executed");
+        System.out.println("University Name: " + universityName);
+    }
+
+    {
+        System.out.println("Instance Block Executed - Student Object Creating...");
+        totalStudents++;
+    }
+
+    University(String name) {
+        studentName = name;
+        System.out.println("Constructor Executed for Student: " + studentName);
+    }
+
+    static int getTotalStudents() {
+        return totalStudents;
+    }
+
+    public static void main(String[] args) {
+https://accounts.google.com/b/0/AddMailService
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("\nEnter number of students: ");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 1; i <= n; i++) {
+            System.out.print("\nEnter name of student " + i + ": ");
+            String name = sc.nextLine();
+
+            new University(name);
+        }
+
+        System.out.println("\nTotal Students Created: " + University.getTotalStudents());
+    }
+}
