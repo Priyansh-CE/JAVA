@@ -37,7 +37,6 @@ class University {
     }
 
     public static void main(String[] args) {
-https://accounts.google.com/b/0/AddMailService
         Scanner sc = new Scanner(System.in);
 
         System.out.print("\nEnter number of students: ");
