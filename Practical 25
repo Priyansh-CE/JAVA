@@ -1,0 +1,119 @@
+/*
+Create a base class named Vehicle that contains common attributes such as vehicleNumber,
+brand, and fuelType. Include a constructor to initialize these fields and a method
+displayDetails() to print them. Derive a subclass Car from Vehicle which adds attributes such
+as numberOfSeats and ACavailable (boolean). Override the displayDetails() method to
+include the car-specific details, and use the super keyword to invoke the parent class
+constructor and methods. Further, derive another subclass ElectricCar from Car that includes
+attributes such as batteryCapacity and chargingTime, and again override the displayDetails()
+method to include electric car-specific details. Demonstrate constructor chaining, method
+overriding, use of protected access specifier for inherited members, and instanceof operator to
+check object type at runtime. In the main() method, create objects of all three classes and
+display their details using overridden methods. Also, use upcasting (Vehicle v = new Car(...))
+and downcasting with instanceof check to access subclass- specific features.
+*/
+
+import java.util.Scanner;
+
+class Vehicle {
+    protected String vehicleNumber;
+    protected String brand;
+    protected String fuelType;
+
+    Vehicle(String vehicleNumber, String brand, String fuelType) {
+        this.vehicleNumber = vehicleNumber;
+        this.brand = brand;
+        this.fuelType = fuelType;
+    }
+
+    void displayDetails() {
+        System.out.println("Vehicle Number: " + vehicleNumber);
+        System.out.println("Brand: " + brand);
+        System.out.println("Fuel Type: " + fuelType);
+    }
+}
+
+class Car extends Vehicle {
+    protected int numberOfSeats;
+    protected boolean ACavailable;
+
+    Car(String vehicleNumber, String brand, String fuelType, int numberOfSeats, boolean ACavailable) {
+        super(vehicleNumber, brand, fuelType); // constructor chaining
+        this.numberOfSeats = numberOfSeats;
+        this.ACavailable = ACavailable;
+    }
+
+    @Override
+    void displayDetails() {
+        super.displayDetails();
+        System.out.println("Number of Seats: " + numberOfSeats);
+        System.out.println("AC Available: " + ACavailable);
+    }
+}
+
+class ElectricCar extends Car {
+    double batteryCapacity;
+    double chargingTime;
+
+    ElectricCar(String vehicleNumber, String brand, String fuelType, int numberOfSeats,
+                boolean ACavailable, double batteryCapacity, double chargingTime) {
+
+        super(vehicleNumber, brand, fuelType, numberOfSeats, ACavailable);
+        this.batteryCapacity = batteryCapacity;
+        this.chargingTime = chargingTime;
+    }
+
+    @Override
+    void displayDetails() {
+        super.displayDetails();
+        System.out.println("Battery Capacity: " + batteryCapacity + " kWh");
+        System.out.println("Charging Time: " + chargingTime + " hours");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter Vehicle Number:");
+        String vno = sc.nextLine();
+
+        System.out.println("Enter Brand:");
+        String brand = sc.nextLine();
+
+        System.out.println("Enter Fuel Type:");
+        String fuel = sc.nextLine();
+
+        System.out.println("Enter Number of Seats:");
+        int seats = sc.nextInt();
+
+        System.out.println("AC Available (true/false):");
+        boolean ac = sc.nextBoolean();
+
+        System.out.println("Enter Battery Capacity:");
+        double battery = sc.nextDouble();
+
+        System.out.println("Enter Charging Time:");
+        double charge = sc.nextDouble();
+
+        System.out.println("\n--- Vehicle Object ---");
+        Vehicle v = new Vehicle(vno, brand, fuel);
+        v.displayDetails();
+
+        System.out.println("\n--- Car Object ---");
+        Vehicle v2 = new Car(vno, brand, fuel, seats, ac);
+        v2.displayDetails();
+
+        System.out.println("\n--- Electric Car Object ---");
+        Vehicle v3 = new ElectricCar(vno, brand, fuel, seats, ac, battery, charge);
+        v3.displayDetails();
+
+        if (v3 instanceof ElectricCar) {
+            ElectricCar ec = (ElectricCar) v3;
+            System.out.println("\nDowncasting successful. Electric Car Battery: " + ec.batteryCapacity);
+        }
+
+        sc.close();
+    }
+}
