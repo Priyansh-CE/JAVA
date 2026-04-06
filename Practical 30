@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+// Abstract class
+abstract class Vehicle {
+    abstract String fuelType();
+    abstract int noOfWheels();
+}
+
+// Car class
+class Car extends Vehicle {
+
+    public String fuelType() {
+        return "Petrol/Diesel";
+    }
+
+    public int noOfWheels() {
+        return 4;
+    }
+}
+
+// Bike class
+class Bike extends Vehicle {
+
+    public String fuelType() {
+        return "Petrol";
+    }
+
+    public int noOfWheels() {
+        return 2;
+    }
+}
+
+// Main class
+class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Choose Vehicle:");
+        System.out.println("1. Car");
+        System.out.println("2. Bike");
+        System.out.print("Enter choice: ");
+
+        int choice = sc.nextInt();
+
+        Vehicle v;
+
+        if (choice == 1) {
+            v = new Car();
+        } else if (choice == 2) {
+            v = new Bike();
+        } else {
+            System.out.println("Invalid choice!");
+            sc.close();
+            return;
+        }
+
+        System.out.println("\nVehicle Details:");
+        System.out.println("Fuel Type: " + v.fuelType());
+        System.out.println("Number of Wheels: " + v.noOfWheels());
+
+        sc.close();
+    }
+}
