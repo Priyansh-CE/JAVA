@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+class Division {
+
+    public static void main(String[] args) {
+
+        int numerator = 0, denominator = 0;
+
+        try {
+            // Case 1: Command-line arguments provided
+            if (args.length >= 2) {
+                numerator = Integer.parseInt(args[0]);
+                denominator = Integer.parseInt(args[1]);
+            } 
+            // Case 2: No arguments → take input from user
+            else {
+                Scanner sc = new Scanner(System.in);
+
+                System.out.print("Enter numerator: ");
+                numerator = sc.nextInt();
+
+                System.out.print("Enter denominator: ");
+                denominator = sc.nextInt();
+            }
+
+            // Division
+            int result = numerator / denominator;
+
+            System.out.println("Result: " + result);
+
+        } 
+        catch (ArithmeticException e) {
+            System.out.println("Error: Cannot divide by zero.");
+        } 
+        catch (NumberFormatException e) {
+            System.out.println("Error: Invalid number format.");
+        } 
+        catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+    }
+}
