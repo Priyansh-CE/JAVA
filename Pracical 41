@@ -1,0 +1,45 @@
+class SumThread extends Thread {
+    int start, end;
+    long sum = 0;
+
+    SumThread(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    public void run() {
+        for (int i = start; i <= end; i++) {
+            sum += i;
+        }
+    }
+
+    // Getter method to return result
+    long getSum() {
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            SumThread t1 = new SumThread(1, 1000);
+            SumThread t2 = new SumThread(1001, 2000);
+
+            // Run threads in parallel
+            t1.start();
+            t2.start();
+
+            // Wait for both to finish
+            t1.join();
+            t2.join();
+
+            // Combine results
+            long total = t1.getSum() + t2.getSum();
+
+            System.out.println("Sum from 1 to 2000 = " + total);
+
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+    }
+}
