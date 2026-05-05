@@ -1,0 +1,51 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.geometry.Pos;
+
+public class GradeBarChartFX extends Application {
+
+    @Override
+    public void start(Stage stage) {
+
+        // Scale factor for height (so bars look good)
+        int scale = 4;
+
+        // Create bars
+        VBox projectBar = createBar("Projects — 20%", 20 * scale, Color.RED);
+        VBox quizBar = createBar("Quizzes — 10%", 10 * scale, Color.BLUE);
+        VBox midBar = createBar("Midterm — 30%", 30 * scale, Color.GREEN);
+        VBox finalBar = createBar("Final — 40%", 40 * scale, Color.ORANGE);
+
+        // Arrange horizontally
+        HBox root = new HBox(20, projectBar, quizBar, midBar, finalBar);
+        root.setAlignment(Pos.BOTTOM_CENTER);
+
+        Scene scene = new Scene(root, 400, 300);
+        stage.setTitle("Grade Distribution Bar Chart");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    // Method to create each bar
+    private VBox createBar(String labelText, int height, Color color) {
+        Rectangle bar = new Rectangle(50, height);
+        bar.setFill(color);
+
+        Text label = new Text(labelText);
+
+        VBox box = new VBox(5, bar, label);
+        box.setAlignment(Pos.BOTTOM_CENTER);
+
+        return box;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
