@@ -1,0 +1,42 @@
+import java.util.*;
+
+// Generic class
+class Box<T> {
+    ArrayList<T> items = new ArrayList<>();
+
+    // Method to add item
+    void addItem(T item) {
+        items.add(item);
+    }
+
+    // Method to display items
+    void displayItems() {
+        for (T item : items) {
+            System.out.println(item);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        // Box for String (names)
+        Box<String> nameBox = new Box<>();
+        nameBox.addItem("Priyansh");
+        nameBox.addItem("Rahul");
+        nameBox.addItem("Sneha");
+
+        // Box for Integer (roll numbers)
+        Box<Integer> rollBox = new Box<>();
+        rollBox.addItem(101);
+        rollBox.addItem(102);
+        rollBox.addItem(103);
+
+        // Display items
+        System.out.println("Names in Box:");
+        nameBox.displayItems();
+
+        System.out.println("\nRoll Numbers in Box:");
+        rollBox.displayItems();
+    }
+}
